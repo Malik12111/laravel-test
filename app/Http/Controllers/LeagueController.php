@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\League;
 
 class LeagueController extends Controller
 {
@@ -11,7 +12,8 @@ class LeagueController extends Controller
      */
     public function index()
     {
-        //
+        $leagues = League::with(['teams'])->get();
+        return view('leagues.index', compact('leagues'));
     }
 
     /**

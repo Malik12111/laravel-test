@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Player;
 
 class PlayerController extends Controller
 {
@@ -11,7 +12,8 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        //
+        $players = Player::with('team')->get();
+        return view('players.index', compact('players'));
     }
 
     /**

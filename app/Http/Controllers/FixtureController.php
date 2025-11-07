@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fixture;
 
 class FixtureController extends Controller
 {
@@ -11,7 +12,10 @@ class FixtureController extends Controller
      */
     public function index()
     {
-        //
+        $fixtures = Fixture::with(['homeTeam', 'awayTeam'])
+                          ->orderBy('match_date', 'asc')
+                          ->get();
+        return view('fixtures.index', compact('fixtures'));
     }
 
     /**
